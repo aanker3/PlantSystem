@@ -1,4 +1,4 @@
-#include "sensor.h"
+#include "src/sensor/sensor.h"
 #include "plant.h"
 #include "helpers.h"
 #include "motor.h"

@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 #include "Arduino.h"
-#include "sensor_conversions.h"
+#include "../../sensor_conversions.h"
 
 class Sensor {       // The class
   public:             // Access specifier
