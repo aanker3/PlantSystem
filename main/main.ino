@@ -1,14 +1,18 @@
 #include "sensor.h"
 #include "plant.h"
 #include "helpers.h"
+#include "motor.h"
+
+#define START_OF_TIMER 0
 
 const int motorPin = 13; // Adjust this pin according to your setup
 Plant fern;
 Sensor moisture(A0);
+Motor fernMotor(13);
 
 void setup() {
   Serial.begin(9600);
-  pinMode(motorPin, OUTPUT);
+  //pinMode(motorPin, OUTPUT);
 
   //Setup Plants
   fern.setMoistureValue(2.0);
@@ -22,15 +26,18 @@ void setup() {
   Serial.println("Moisture_Sensor_A0: " + String(moisture_value));
   Serial.println("TimeElapsed= " + String(GetTimeElapsedMilliseconds()) + " MilliSeconds");
   Serial.println("TimeElapsed= " + String(GetTimeElapsedSeconds()) + " Seconds");
-  
+
+  // Reset the times watered after arduino timer resets
+  if (GetTimeElapsedMilliseconds == START_OF_TIMER)
+  {
+    fern.reset();
+  }
+
 Serial.println("TimeElapsed= " + String(GetTimeElapsedMinutes()) + " Minutes");
   if(moisture_value < fern.getDesiredMoistureValue())
   {
     Serial.println("WATERING!!! SENSOR_VALUE = " + String(moisture_value));
-
-    digitalWrite(motorPin, HIGH); // Turn the motor on
-    delay(5000);
-    digitalWrite(motorPin, LOW);  // Turn the motor of
+    fernMotor.motor5s();
     fern.plantWatered();
     Serial.println("End Watering.  Times Watered = " + String(fern.getTimesWatered()));
   }
