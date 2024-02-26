@@ -11,11 +11,16 @@
 #define MILLIS_TO_SECONDS 1000
 #define MILLIS_TO_MINUTES MILLIS_TO_SECONDS / 60
 
+//todo fix this. not accurate
+#define ONE_WEEK 5000
+
+
 unsigned long GetTimeElapsedMilliseconds();
 
 unsigned long GetTimeElapsedSeconds();
 
 unsigned long GetTimeElapsedMinutes();
 
+unsigned long GetTimeAndUpdate(unsigned long &previousTime);
 
 #endif

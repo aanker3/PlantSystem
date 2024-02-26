@@ -9,6 +9,7 @@ const int motorPin = 13; // Adjust this pin according to your setup
 FernPlant fern;
 MoistureSensor moisture(A0);
 Motor fernMotor(13);
+unsigned long previousTime = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -24,16 +25,13 @@ void setup() {
 
   // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
   Serial.println("Moisture_Sensor_A0: " + String(moisture_value));
-  Serial.println("TimeElapsed= " + String(GetTimeElapsedMilliseconds()) + " MilliSeconds");
-  Serial.println("TimeElapsed= " + String(GetTimeElapsedSeconds()) + " Seconds");
 
-  // todo redo this.  this wont work.  In order for this to work, we need to get lucky and hit exactly 0.
-  if (GetTimeElapsedMilliseconds == START_OF_TIMER)
-  {
-    fern.reset();
-  }
+  unsigned long elapsedTime = GetTimeAndUpdate(previousTime);
+  Serial.println("TIME = " + String(elapsedTime));
 
-Serial.println("TimeElapsed= " + String(GetTimeElapsedMinutes()) + " Minutes");
+
+  Serial.println("TimeElapsed= " + String(GetTimeElapsedMinutes()) + " Minutes");
+  
   if(moisture_value < fern.getDesiredMoistureValue())
   {
     Serial.println("WATERING!!! SENSOR_VALUE = " + String(moisture_value));
