@@ -13,8 +13,3 @@ void Sensor::setHwPin(uint8_t value){
 uint8_t Sensor::getHwPin() const {
   return hwPin;
 }
-
-float Sensor::getMeasuredValue(){
-  measuredValue = SensorValueInVoltage(analogRead(hwPin));
-  return measuredValue;
-}

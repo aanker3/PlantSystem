@@ -1,13 +1,13 @@
-#include "src/sensor/sensor.h"
-#include "plant.h"
+#include "src/objects/sensors/moisture_sensor.h"
+#include "src/objects/plants/fern_plant.h"
 #include "helpers.h"
 #include "motor.h"
 
 #define START_OF_TIMER 0
 
 const int motorPin = 13; // Adjust this pin according to your setup
-Plant fern;
-Sensor moisture(A0);
+FernPlant fern;
+MoistureSensor moisture(A0);
 Motor fernMotor(13);
 
 void setup() {
@@ -27,7 +27,7 @@ void setup() {
   Serial.println("TimeElapsed= " + String(GetTimeElapsedMilliseconds()) + " MilliSeconds");
   Serial.println("TimeElapsed= " + String(GetTimeElapsedSeconds()) + " Seconds");
 
-  // Reset the times watered after arduino timer resets
+  // todo redo this.  this wont work.  In order for this to work, we need to get lucky and hit exactly 0.
   if (GetTimeElapsedMilliseconds == START_OF_TIMER)
   {
     fern.reset();
