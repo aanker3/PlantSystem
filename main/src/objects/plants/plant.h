@@ -1,13 +1,15 @@
-#ifndef FERN_PLANT_H
-#define FERN_PLANT_H
+#ifndef PLANT_H
+#define PLANT_H
 
 //include "sensor.h"
+#define FERN_DESIRED_MOISTURE 2.0f
+#define CACTUS_DESIRED_MOISTURE 1.5f
 
 //Plant object
-class FernPlant {
+class Plant {
   public:
-    FernPlant();
-    ~FernPlant();
+    Plant(float desiredMoisture);;
+    ~Plant();
 
     void setMoistureValue(float value); // Setter for moistureValue
     float getMoistureValue() const; // Getter for moistureValue

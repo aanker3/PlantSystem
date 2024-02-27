@@ -1,16 +1,19 @@
 #include "src/objects/sensors/moisture_sensor.h"
-#include "src/objects/plants/fern_plant.h"
+#include "src/objects/plants/plant.h"
+#include "src/objects/plants/plant_factory.h"
 #include "helpers.h"
 #include "motor.h"
 
 #define START_OF_TIMER 0
 
 const int motorPin = 13; // Adjust this pin according to your setup
-FernPlant fern;
+Plant fern(2.0f);
 MoistureSensor moisture(A0);
 Motor fernMotor(13);
 unsigned long previousTime = 0;
 uint16_t days_elapsed = 0;
+
+Plant* cactus = PlantFactory::createPlant("Cactus");
 
 void setup() {
   Serial.begin(9600);
@@ -21,6 +24,7 @@ void setup() {
 }
 
   void loop() {
+  Serial.println("Cactus Moisture Value = " + String(cactus->getDesiredMoistureValue()));
   moisture.getMeasuredValue();
   float moisture_value = moisture.getMeasuredValue();
 
