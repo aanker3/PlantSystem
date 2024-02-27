@@ -1,14 +1,5 @@
 #include "helpers.h"
 
-//Time ran in ms.
-unsigned long GetTimeElapsedMilliseconds(){
-  return millis();
-}
-
-unsigned long GetTimeElapsedSeconds(){
-  return millis() / MILLIS_TO_SECONDS;
-}
-
 unsigned long GetTimeElapsedMinutes(){
   return millis() / MILLIS_TO_MINUTES;
 }
@@ -21,18 +12,16 @@ unsigned long GetTime(unsigned long previousTime)
   return elapsedTime;
 }
 
-unsigned long GetTimeAndUpdate(unsigned long &previousTime)
+void GetTimeAndUpdate(unsigned long &previousTime, uint16_t &days_elapsed)
 {
   unsigned long currentTime = millis();
   unsigned long elapsedTime = currentTime - previousTime;
 
   // Check if elapsedTime has exceeded or is exactly one week,
   // if so, reset previousTime to "simulate" resetting the timer
-  if (elapsedTime >= ONE_WEEK)
+  if (elapsedTime >= ONE_DAY_MS)
   {
-    previousTime = currentTime - (elapsedTime - ONE_WEEK);
-    elapsedTime = 0; // Reset elapsed time to 0
+    previousTime = currentTime - (elapsedTime - ONE_DAY_MS);
+    days_elapsed++;
   }
-
-  return elapsedTime;
 }

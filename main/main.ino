@@ -10,6 +10,7 @@ FernPlant fern;
 MoistureSensor moisture(A0);
 Motor fernMotor(13);
 unsigned long previousTime = 0;
+uint16_t days_elapsed = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -26,8 +27,9 @@ void setup() {
   // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
   Serial.println("Moisture_Sensor_A0: " + String(moisture_value));
 
-  unsigned long elapsedTime = GetTimeAndUpdate(previousTime);
-  Serial.println("TIME = " + String(elapsedTime));
+  GetTimeAndUpdate(previousTime, days_elapsed);
+  Serial.println("days_elapsed = " + String(days_elapsed));
+
 
 
   Serial.println("TimeElapsed= " + String(GetTimeElapsedMinutes()) + " Minutes");
