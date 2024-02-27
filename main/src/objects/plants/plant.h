@@ -1,13 +1,11 @@
-#ifndef FERN_PLANT_H
-#define FERN_PLANT_H
+#ifndef PLANT_H
+#define PLANT_H
 
-//include "sensor.h"
-
-//Plant object
-class FernPlant {
+//Abstracted Based Plant class
+class Plant {
   public:
-    FernPlant();
-    ~FernPlant();
+    Plant(float desiredMoisture);
+    ~Plant();
 
     void setMoistureValue(float value); // Setter for moistureValue
     float getMoistureValue() const; // Getter for moistureValue
@@ -18,7 +16,7 @@ class FernPlant {
     int getTimesWatered() const; // Getter for timesWatered
     
     void reset(); //Reset Variables (usually after 50 Day Timeout)
-  private:
+  protected:
     int moistureValue;
     int timesWatered;  // Amount of times plant has been watered
     float desiredMoistureValue;

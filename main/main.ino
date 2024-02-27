@@ -1,5 +1,5 @@
 #include "src/objects/sensors/moisture_sensor.h"
-#include "src/objects/plants/fern_plant.h"
+#include "src/objects/plants/plant_models.h"
 #include "helpers.h"
 #include "motor.h"
 
