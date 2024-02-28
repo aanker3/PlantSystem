@@ -23,7 +23,6 @@ WateringManager* wateringManager = NULL;
 
 void setup() {
   Serial.begin(9600);
-  set_sleep_mode(SLEEP_MODE_PWR_DOWN); // Set the sleep mode
 
   fern = PlantFactory::createPlant("fern");
   cactus = PlantFactory::createPlant("cactus");
