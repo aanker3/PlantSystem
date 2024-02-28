@@ -23,12 +23,16 @@ WateringManager* wateringManager = NULL;
 
 void setup() {
   Serial.begin(9600);
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN); // Set the sleep mode
+
   fern = PlantFactory::createPlant("fern");
   cactus = PlantFactory::createPlant("cactus");
 
   wateringManager = new WateringManager();
-  wateringManager->AddPlant(*fern, moisture);
-  wateringManager->AddPlant(*cactus, moisture);
+  wateringManager->addPlantSystem("fern", A0);
+  wateringManager->addPlantSystem("cactus", A1);
+  wateringManager->addPlantSystem("basil", A2);
+
   //cactus = PlantFactory::createPlant("cactus");
   //plantVector.push_back(fern);
   //plantVector.push_back(cactus);
@@ -55,7 +59,7 @@ void loop() {
     //     }
     // }
     //Serial.println("fern plant Name = " + String(fern->getName().c_str()));
-    wateringManager->printSystemsInfo();
+    wateringManager->printPlantSystemsInfo();
   
   
   //Serial.println("Cactus Moisture Value = " + String(cactus->getMoistureWateringPoint()));

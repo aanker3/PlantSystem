@@ -3,7 +3,9 @@
 
 #include "sensors/moisture_sensor.h"
 #include "plants/plant.h"
+#include "plants/plant_factory.h"
 #include <vector>
+
 // Consists of everything that makes up a single plant system
 struct  PlantSystem {
   Plant plant;
@@ -16,9 +18,9 @@ class WateringManager {
     WateringManager();
     ~WateringManager();
 
-    void AddPlant(Plant& plant, MoistureSensor& moistureSensor);
+    void addPlantSystem(const std::string& plantName, uint8_t moistureSensorPin);
 
-    void printSystemsInfo() const;
+    void printPlantSystemsInfo() const;
 
   private:
   std::vector<PlantSystem> plantSystems;
