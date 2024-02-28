@@ -1,7 +1,7 @@
 #include "src/objects/sensors/moisture_sensor.h"
 #include "src/objects/plants/plant.h"
 #include "src/objects/plants/plant_factory.h"
-#include "src/objects/device_manager.h"
+#include "src/objects/watering_manager.h"
 #include "helpers.h"
 #include "motor.h"
 #include <vector>
@@ -18,12 +18,17 @@ MoistureSensor moisture(A0);
 //Plant* fern = PlantFactory::createPlant("fern");
 std::vector<Plant*> plantVector;
 Plant* fern = NULL;//PlantFactory::createPlant("fern");
-DeviceManager* deviceManager = NULL;
+Plant* cactus = NULL;
+WateringManager* wateringManager = NULL;
 
 void setup() {
   Serial.begin(9600);
   fern = PlantFactory::createPlant("fern");
-  deviceManager = new DeviceManager(*fern, moisture);
+  cactus = PlantFactory::createPlant("cactus");
+
+  wateringManager = new WateringManager();
+  wateringManager->AddPlant(*fern, moisture);
+  wateringManager->AddPlant(*cactus, moisture);
   //cactus = PlantFactory::createPlant("cactus");
   //plantVector.push_back(fern);
   //plantVector.push_back(cactus);
@@ -38,6 +43,8 @@ void setup() {
 void loop() {
 
   Serial.println("test");
+    
+
     // for (Plant* plant : plantVector) {
     //     if (plant != nullptr) {
     //         Serial.println("plant Name = " + String(plant->getName().c_str()));
@@ -47,8 +54,8 @@ void loop() {
     //         // plant->displayInfo();
     //     }
     // }
-    Serial.println("fern plant Name = " + String(fern->getName().c_str()));
-    Serial.println("plant Name = " + String(deviceManager->getPlantName().c_str()));
+    //Serial.println("fern plant Name = " + String(fern->getName().c_str()));
+    wateringManager->printSystemsInfo();
   
   
   //Serial.println("Cactus Moisture Value = " + String(cactus->getMoistureWateringPoint()));
