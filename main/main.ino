@@ -8,39 +8,18 @@
 
 #define START_OF_TIMER 0
 
-// const int motorPin = 13; // Adjust this pin according to your setup
-MoistureSensor moisture(A0);
-// Motor fernMotor(13);
-// unsigned long previousTime = 0;
-// uint16_t days_elapsed = 0;
-
-// Plant* cactus = PlantFactory::createPlant("Cactus");
-//Plant* fern = PlantFactory::createPlant("fern");
-std::vector<Plant*> plantVector;
-Plant* fern = NULL;//PlantFactory::createPlant("fern");
-Plant* cactus = NULL;
 WateringManager* wateringManager = NULL;
 
 void setup() {
   Serial.begin(9600);
-
-  fern = PlantFactory::createPlant("fern");
-  cactus = PlantFactory::createPlant("cactus");
 
   wateringManager = new WateringManager();
   wateringManager->addPlantSystem("fern", A0);
   wateringManager->addPlantSystem("cactus", A1);
   wateringManager->addPlantSystem("basil", A2);
 
-  //cactus = PlantFactory::createPlant("cactus");
-  //plantVector.push_back(fern);
-  //plantVector.push_back(cactus);
-
-
   //pinMode(motorPin, OUTPUT);
 
-  //Setup Plants
-  //fern->setCurrentMoistureValue(2.0);
 }
 
 void loop() {

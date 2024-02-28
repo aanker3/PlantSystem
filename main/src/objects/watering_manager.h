@@ -8,7 +8,7 @@
 
 // Consists of everything that makes up a single plant system
 struct  PlantSystem {
-  Plant plant;
+  Plant* plant;
   MoistureSensor moistureSensor;
 };
 
