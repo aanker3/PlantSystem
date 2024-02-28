@@ -40,7 +40,6 @@ void loop() {
         if (plant != nullptr) {
             Serial.println("plant Name = " + String(plant->getName().c_str()));
             Serial.println("plant Moisture Value = " + String(plant->getMoistureWateringPoint()));
-            Serial.println("plant Moisture Sensor Pin = " + String(plant->getMoistureSensorPin()));
 
             // Example function call, assuming Plant has a method named 'displayInfo'
             // plant->displayInfo();

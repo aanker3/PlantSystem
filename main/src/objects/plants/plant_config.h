@@ -6,7 +6,6 @@
 struct PlantConfig {
     float moistureWateringPoint;
     uint16_t waterPerWeek;
-    uint8_t moistureSensorPin;
 };
 
 // Declaration only
