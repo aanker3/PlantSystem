@@ -12,11 +12,14 @@ class Plant {
     ~Plant();
 
     std::string getName() const;
+  
+    uint8_t getMoistureSensorPin() const; // Getter for moistureSensorPin
 
     void setCurrentMoistureValue(float value); // Setter for currentMoistureValue
     float getCurrentMoistureValue() const; // Getter for currentMoistureValue
 
     float getMoistureWateringPoint() const; // Getter for moistureWateringPoint
+
 
     void plantWatered(); // Setter for timesWatered
     int getTimesWatered() const; // Getter for timesWatered
@@ -29,6 +32,8 @@ class Plant {
     //To be set on instantiation
     float moistureWateringPoint;  // Moisture Level at which we should water the plant
     uint16_t waterPerWeek;       // How often plant expects to be watered per week
+    uint8_t moistureSensorPin;
+
 
     int currentMoistureValue;
     int timesWatered;  // Amount of times plant has been watered

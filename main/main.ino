@@ -8,7 +8,7 @@
 #define START_OF_TIMER 0
 
 // const int motorPin = 13; // Adjust this pin according to your setup
-// MoistureSensor moisture(A0);
+MoistureSensor moisture(A0);
 // Motor fernMotor(13);
 // unsigned long previousTime = 0;
 // uint16_t days_elapsed = 0;
@@ -36,13 +36,11 @@ void setup() {
 void loop() {
 
   Serial.println("test");
-    // Example: Accessing elements and calling a hypothetical member function
     for (Plant* plant : plantVector) {
         if (plant != nullptr) {
             Serial.println("plant Name = " + String(plant->getName().c_str()));
-
-
             Serial.println("plant Moisture Value = " + String(plant->getMoistureWateringPoint()));
+            Serial.println("plant Moisture Sensor Pin = " + String(plant->getMoistureSensorPin()));
 
             // Example function call, assuming Plant has a method named 'displayInfo'
             // plant->displayInfo();
