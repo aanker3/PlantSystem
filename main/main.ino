@@ -1,6 +1,7 @@
 #include "src/objects/sensors/moisture_sensor.h"
 #include "src/objects/plants/plant.h"
 #include "src/objects/plants/plant_factory.h"
+#include "src/objects/device_manager.h"
 #include "helpers.h"
 #include "motor.h"
 #include <vector>
@@ -16,15 +17,16 @@ MoistureSensor moisture(A0);
 // Plant* cactus = PlantFactory::createPlant("Cactus");
 //Plant* fern = PlantFactory::createPlant("fern");
 std::vector<Plant*> plantVector;
-Plant* fern = NULL;
-Plant* cactus = NULL;
+Plant* fern = NULL;//PlantFactory::createPlant("fern");
+DeviceManager* deviceManager = NULL;
 
 void setup() {
   Serial.begin(9600);
   fern = PlantFactory::createPlant("fern");
-  cactus = PlantFactory::createPlant("cactus");
-  plantVector.push_back(fern);
-  plantVector.push_back(cactus);
+  deviceManager = new DeviceManager(*fern, moisture);
+  //cactus = PlantFactory::createPlant("cactus");
+  //plantVector.push_back(fern);
+  //plantVector.push_back(cactus);
 
 
   //pinMode(motorPin, OUTPUT);
@@ -36,16 +38,19 @@ void setup() {
 void loop() {
 
   Serial.println("test");
-    for (Plant* plant : plantVector) {
-        if (plant != nullptr) {
-            Serial.println("plant Name = " + String(plant->getName().c_str()));
-            Serial.println("plant Moisture Value = " + String(plant->getMoistureWateringPoint()));
+    // for (Plant* plant : plantVector) {
+    //     if (plant != nullptr) {
+    //         Serial.println("plant Name = " + String(plant->getName().c_str()));
+    //         Serial.println("plant Moisture Value = " + String(plant->getMoistureWateringPoint()));
 
-            // Example function call, assuming Plant has a method named 'displayInfo'
-            // plant->displayInfo();
-        }
-    }
-
+    //         // Example function call, assuming Plant has a method named 'displayInfo'
+    //         // plant->displayInfo();
+    //     }
+    // }
+    Serial.println("fern plant Name = " + String(fern->getName().c_str()));
+    Serial.println("plant Name = " + String(deviceManager->getPlantName().c_str()));
+  
+  
   //Serial.println("Cactus Moisture Value = " + String(cactus->getMoistureWateringPoint()));
   //Serial.println("Fern Moisture Value = " + String(fern->getMoistureWateringPoint()));
 
