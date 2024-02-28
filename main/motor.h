@@ -10,8 +10,8 @@ class Motor {       // The class
     Motor(uint8_t pin);
     ~Motor();
 
-    void setHwPin(uint8_t pin); // Setter for pin
-    uint8_t getHwPin() const; // Getter for moistureValue
+    void setHwPin(uint8_t pin); // Setter for HwPin
+    uint8_t getHwPin() const; // Getter for HwPin
 
     void motor5s();
 

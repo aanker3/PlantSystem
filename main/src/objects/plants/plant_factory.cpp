@@ -1,20 +1,11 @@
 #include "plant_factory.h"
 
-Plant* PlantFactory::createPlant(const std::string& plant_name)
+Plant* PlantFactory::createPlant(const std::string& plantName)
 {
-  if (plant_name == "Fern")
-  {
-    return new Plant(FERN_DESIRED_MOISTURE);
-  }
-  else if (plant_name == "Cactus")
-  {
-    return new Plant(CACTUS_DESIRED_MOISTURE);
-  }
-  else
-  {
-    Serial.println("Error.  Plant not found");
-    //Serial.println("Error.  Plant " + plant_name + "not found");
-  }
+    auto it = plantConfigurations.find(plantName);
+    if (it != plantConfigurations.end()) {
+        return new Plant(plantName, it->second);
+    } else {
+        return nullptr;
+    }
 }
-
-//I dont think i want to do this.

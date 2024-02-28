@@ -10,8 +10,8 @@ class Sensor {       // The class
     Sensor(uint8_t pin);
     virtual ~Sensor();
 
-    virtual void setHwPin(uint8_t pin); // Setter for pin
-    virtual uint8_t getHwPin() const; // Getter for moistureValue
+    virtual void setHwPin(uint8_t pin); // Setter for hwPin
+    virtual uint8_t getHwPin() const; // Getter for hwPin
 
   protected:
     uint8_t hwPin;        // Attribute (int variable)

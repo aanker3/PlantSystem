@@ -9,7 +9,7 @@
 //Handles Sensor HW Initialization
 class PlantFactory {       // The class
   public:             // Access specifier
-    static Plant* createPlant(const std::string& plant_name);
+    static Plant* createPlant(const std::string& plantName);
 };
 
 

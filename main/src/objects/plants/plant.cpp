@@ -1,7 +1,9 @@
 #include "plant.h"
+#include "Arduino.h"
 
 // Constructor - Initialize Variables
-Plant::Plant(float desiredMoisture) : desiredMoistureValue(desiredMoisture) {
+Plant::Plant(const std::string& plantName, PlantConfig& config) : name(plantName), moistureWateringPoint(config.moistureWateringPoint), waterPerWeek(config.waterPerWeek) 
+{
   reset();
 }
 
@@ -9,15 +11,19 @@ Plant::~Plant(){
 
 }
 
-void Plant::setMoistureValue(float value){
-  moistureValue = value;
-}
-float Plant::getMoistureValue() const {
-  return moistureValue;
+std::string Plant::getName() const {
+  return name;
 }
 
-float Plant::getDesiredMoistureValue() const {
-  return desiredMoistureValue;
+void Plant::setCurrentMoistureValue(float value){
+  currentMoistureValue = value;
+}
+float Plant::getCurrentMoistureValue() const {
+  return currentMoistureValue;
+}
+
+float Plant::getMoistureWateringPoint() const {
+  return moistureWateringPoint;
 }
 
 
