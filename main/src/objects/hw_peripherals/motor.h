@@ -2,11 +2,11 @@
 #define MOTOR_H
 
 #include "../../../helpers.h"
-#include "peripheral_base.h"
+#include "hw_peripheral_base.h"
 #include <stdint.h>
 #include "Arduino.h"
 
-class Motor : public PeripheralBase {       // The class
+class Motor : public HwPeripheralBase {       // The class
   public:             // Access specifier
     Motor(uint8_t pin);
     ~Motor();

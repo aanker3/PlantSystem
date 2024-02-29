@@ -5,10 +5,10 @@
 
 //Abstract Based Peripheral Class.
 //Handles Peripheral HW Initialization
-class PeripheralBase {       // The class
+class HwPeripheralBase {       // The class
   public:             // Access specifier
-    PeripheralBase(uint8_t pin);
-    virtual ~PeripheralBase();
+    HwPeripheralBase(uint8_t pin);
+    virtual ~HwPeripheralBase();
 
     virtual void setHwPin(uint8_t pin); // Setter for hwPin
     virtual uint8_t getHwPin() const; // Getter for hwPin

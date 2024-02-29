@@ -1,6 +1,6 @@
 #include "motor.h"
 
-Motor::Motor(uint8_t pin) : PeripheralBase(pin){
+Motor::Motor(uint8_t pin) : HwPeripheralBase(pin){
   pinMode(hwPin, OUTPUT);
 }
 
