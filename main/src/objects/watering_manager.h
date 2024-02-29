@@ -5,13 +5,14 @@
 #include "hw_peripherals/motor.h"
 #include "plants/plant.h"
 #include "plants/plant_factory.h"
+#include "hw_peripherals/hw_peripheral_factory.h"
 #include <vector>
 
 // Consists of everything that makes up a single plant system
 struct  PlantSystem {
   Plant* plant;
-  MoistureSensor moistureSensor;
-  Motor motor;
+  HwPeripheralBase* moistureSensor;
+  HwPeripheralBase* motor;
 };
 
 class WateringManager {
