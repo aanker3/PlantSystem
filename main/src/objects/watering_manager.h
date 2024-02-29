@@ -1,7 +1,7 @@
 #ifndef WATERING_MANAGER_H
 #define WATERING_MANAGER_H
 
-#include "sensors/moisture_sensor.h"
+#include "hw_peripherals/moisture_sensor.h"
 #include "plants/plant.h"
 #include "plants/plant_factory.h"
 #include <vector>

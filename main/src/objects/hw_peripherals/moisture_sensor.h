@@ -3,10 +3,10 @@
 
 #include <stdint.h>
 #include "Arduino.h"
-#include "sensor.h"
+#include "peripheral_base.h"
 #include "../../../sensor_conversions.h"
 
-class MoistureSensor : public Sensor {       // The class
+class MoistureSensor : public PeripheralBase {       // The class
   public:             // Access specifier
     MoistureSensor(uint8_t pin);
     float getMeasuredValue();

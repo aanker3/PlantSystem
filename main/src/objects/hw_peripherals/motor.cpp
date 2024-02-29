@@ -1,20 +1,12 @@
 #include "motor.h"
 
-Motor::Motor(uint8_t pin) : hwPin(pin){
+Motor::Motor(uint8_t pin) : PeripheralBase(pin){
   pinMode(hwPin, OUTPUT);
 }
 
 Motor::~Motor(){
   // Turn the motor off
   digitalWrite(hwPin, LOW);
-}
-
-void Motor::setHwPin(uint8_t value){
-  hwPin = value;
-}
-
-uint8_t Motor::getHwPin() const {
-  return hwPin;
 }
 
 void Motor::motor5s(){
