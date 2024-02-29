@@ -2,6 +2,7 @@
 #define WATERING_MANAGER_H
 
 #include "hw_peripherals/moisture_sensor.h"
+#include "hw_peripherals/motor.h"
 #include "plants/plant.h"
 #include "plants/plant_factory.h"
 #include <vector>
@@ -10,6 +11,7 @@
 struct  PlantSystem {
   Plant* plant;
   MoistureSensor moistureSensor;
+  Motor motor;
 };
 
 class WateringManager {
@@ -18,7 +20,7 @@ class WateringManager {
     WateringManager();
     ~WateringManager();
 
-    void addPlantSystem(const std::string& plantName, uint8_t moistureSensorPin);
+    void addPlantSystem(const std::string& plantName, uint8_t moistureSensorPin, uint8_t motorPin);
 
     void printPlantSystemsInfo() const;
 

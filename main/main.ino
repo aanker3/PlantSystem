@@ -14,9 +14,9 @@ void setup() {
   Serial.begin(9600);
 
   wateringManager = new WateringManager();
-  wateringManager->addPlantSystem("fern", A0);
-  wateringManager->addPlantSystem("cactus", A1);
-  wateringManager->addPlantSystem("basil", A2);
+  wateringManager->addPlantSystem("fern", A0, 13);
+  wateringManager->addPlantSystem("cactus", A1, 12);
+  wateringManager->addPlantSystem("basil", A2, 11);
 
   //pinMode(motorPin, OUTPUT);
 

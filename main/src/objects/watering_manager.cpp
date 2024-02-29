@@ -17,11 +17,12 @@ void WateringManager::printPlantSystemsInfo() const {
     Serial.println("Plant " + String(plantNum));
     Serial.println((it->plant->getName()).c_str());
     Serial.println(it->moistureSensor.getHwPin());
+    Serial.println(it->motor.getHwPin());
     plantNum++;
   }
 }
 
-void WateringManager::addPlantSystem(const std::string& plantName, uint8_t moistureSensorPin)
+void WateringManager::addPlantSystem(const std::string& plantName, uint8_t moistureSensorPin, uint8_t motorPin)
 {
   Plant* plant = PlantFactory::createPlant(plantName);
   if (plant==NULL)
@@ -30,6 +31,7 @@ void WateringManager::addPlantSystem(const std::string& plantName, uint8_t moist
     return;
   }
   MoistureSensor moistureSensor = MoistureSensor(moistureSensorPin);
-  PlantSystem newPlant = {plant, moistureSensor};
-  plantSystems.push_back(newPlant);
+  Motor motor = Motor(motorPin);
+  PlantSystem newPlantSystem = {plant, moistureSensor, motor};
+  plantSystems.push_back(newPlantSystem);
 }
