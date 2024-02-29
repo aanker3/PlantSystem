@@ -23,6 +23,9 @@ class WateringManager {
     void addPlantSystem(const std::string& plantName, uint8_t moistureSensorPin, uint8_t motorPin);
 
     void printPlantSystemsInfo() const;
+  
+    void gatherDataAndWater();
+
 
   private:
   std::vector<PlantSystem> plantSystems;

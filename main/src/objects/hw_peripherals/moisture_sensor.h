@@ -9,7 +9,7 @@
 class MoistureSensor : public PeripheralBase {       // The class
   public:             // Access specifier
     MoistureSensor(uint8_t pin);
-    float getMeasuredValue();
+    float getMeasuredValue() const;
 
   private:
     float measuredValue;

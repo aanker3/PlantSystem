@@ -15,8 +15,8 @@ void setup() {
 
   wateringManager = new WateringManager();
   wateringManager->addPlantSystem("fern", A0, 13);
-  wateringManager->addPlantSystem("cactus", A1, 12);
-  wateringManager->addPlantSystem("basil", A2, 11);
+  //wateringManager->addPlantSystem("cactus", A1, 12);
+  //wateringManager->addPlantSystem("basil", A2, 11);
 
   //pinMode(motorPin, OUTPUT);
 
@@ -38,7 +38,8 @@ void loop() {
     // }
     //Serial.println("fern plant Name = " + String(fern->getName().c_str()));
     wateringManager->printPlantSystemsInfo();
-  
+    wateringManager->gatherDataAndWater();
+
   
   //Serial.println("Cactus Moisture Value = " + String(cactus->getMoistureWateringPoint()));
   //Serial.println("Fern Moisture Value = " + String(fern->getMoistureWateringPoint()));

@@ -16,10 +16,23 @@ void WateringManager::printPlantSystemsInfo() const {
   for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
     Serial.println("Plant " + String(plantNum));
     Serial.println((it->plant->getName()).c_str());
-    Serial.println(it->moistureSensor.getHwPin());
+    Serial.println("MoistureWateringPoint = " + String(it->plant->getMoistureWateringPoint()));
+    Serial.println("pin: " + String(it->moistureSensor.getHwPin()) + "measured_value = " + String(it->moistureSensor.getMeasuredValue()));
+
     Serial.println(it->motor.getHwPin());
     plantNum++;
   }
+}
+
+void WateringManager::gatherDataAndWater()
+{
+    for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
+      if (it->plant->getMoistureWateringPoint() > it->moistureSensor.getMeasuredValue())
+      {
+        Serial.println("WATERING PLANT!");
+        it->motor.motor5s();
+      }
+    }
 }
 
 void WateringManager::addPlantSystem(const std::string& plantName, uint8_t moistureSensorPin, uint8_t motorPin)
