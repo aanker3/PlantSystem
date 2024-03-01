@@ -29,7 +29,7 @@ void WateringManager::gatherDataAndWater()
     for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
       if (it->plant->getMoistureWateringPoint() > it->moistureSensor.getMeasuredValue())
       {
-        Serial.println("WATERING PLANT!");
+        Serial.println("WATERING " + String((it->plant->getName()).c_str()) + " PLANT!");
         it->motor.motor5s();
       }
     }
