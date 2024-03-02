@@ -26,6 +26,9 @@ float Plant::getMoistureWateringPoint() const {
   return cfg.moistureWateringPoint;
 }
 
+uint16_t Plant::getMaxWaterTwoWeeks() const {
+  return cfg.maxWaterTwoWeeks;
+}
 
 void Plant::plantWatered(){
   timesWatered++;
@@ -34,7 +37,17 @@ uint8_t Plant::getTimesWatered() const {
   return timesWatered;
 }
 
+uint8_t Plant::getTimesAttemptedWatered() const {
+  return timesAttemptedWatered;
+}
+
+void Plant::attemptedWatered()
+{
+  timesAttemptedWatered++;
+}
+
 void Plant::reset(){
+  Serial.println("Plant " + String(name.c_str()) + "Resetting");
   timesWatered = 0;
   timesAttemptedWatered = 0;
 }

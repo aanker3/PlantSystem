@@ -36,16 +36,35 @@ void WateringManager::waterPlantsIfNeeded()
   for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
     if(it->plant->getMoistureWateringPoint() > it->plant->getCurrentMoistureValue())
     {
-      Serial.println("WATERING " + String((it->plant->getName()).c_str()) + " PLANT!");
-      it->plant->plantWatered();
-      Serial.println(String((it->plant->getName()).c_str()) + " Has been watered " + String(it->plant->getTimesWatered()) + " times");
-      it->motor.motor5s();
+      it->plant->attemptedWatered();
+
+      if (it->plant->getTimesWatered() < it->plant->getMaxWaterTwoWeeks())
+      {
+        Serial.println("WATERING " + String((it->plant->getName()).c_str()) + " PLANT!");
+        it->plant->plantWatered();
+        Serial.println(String((it->plant->getName()).c_str()) + " Has been watered " + String(it->plant->getTimesWatered()) + " times");
+        it->motor.motor5s();
+      }
+      else
+      {
+        Serial.println("Plant " + String((it->plant->getName()).c_str()) + " Watered TOO MANY TIMES!");
+      }
     }
   }
 }
 
+void WateringManager::PrintTwoWeekResults()
+{
+  Serial.println("------------- 2 Week Results -------------");
+  for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
+    Serial.println(String((it->plant->getName()).c_str()) + " Has been watered " + String(it->plant->getTimesWatered()) + " times.  Attempted Waters = " + String(it->plant->getTimesAttemptedWatered()));
+  }
+  Serial.println("------------- -------------- -------------");
+}
+
 void WateringManager::resetPlants()
 {
+  PrintTwoWeekResults();
   Serial.println("RESETTING PLANTS");
   for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
     it->plant->reset();

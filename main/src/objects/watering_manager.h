@@ -28,6 +28,8 @@ class WateringManager {
 
     void waterPlantsIfNeeded();
 
+    void PrintTwoWeekResults();
+
     void resetPlants();
 
   private:

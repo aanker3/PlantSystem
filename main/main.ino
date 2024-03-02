@@ -31,9 +31,9 @@ void loop() {
   // Call GetTimeAndUpdate regularly to update time and count days
   getTimeAndUpdate(previousTime, days_elapsed);
 
-  // Check if two weeks have elapsed
+  // Check if two weeks have elapsed.
   if (twoWeeksElapsed(days_elapsed)) {
-    Serial.println("Two weeks have elapsed!");
+    //Reset watering period
     wateringManager->resetPlants();
   }
   else
@@ -46,7 +46,7 @@ void loop() {
   wateringManager->gatherSensorData();
   wateringManager->waterPlantsIfNeeded();
 
-  delay(1000);  // Delay a bit to make it more readable
+  delay(1000);
 }
 
 

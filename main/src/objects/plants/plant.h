@@ -18,6 +18,13 @@ class Plant {
 
     float getMoistureWateringPoint() const; // Getter for moistureWateringPoint
 
+    uint8_t getTimesAttemptedWatered() const;
+    void attemptedWatered();
+
+    uint16_t getMaxWaterTwoWeeks() const;
+
+    //TODO: can simply do a getCfg()...
+
 
     void plantWatered(); // Setter for timesWatered
     uint8_t getTimesWatered() const; // Getter for timesWatered
