@@ -36,8 +36,6 @@ void WateringManager::waterPlantsIfNeeded()
   for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
     if(it->plant->getMoistureWateringPoint() > it->plant->getCurrentMoistureValue())
     {
-      it->plant->attemptedWatered();
-
       if (it->plant->getTimesWatered() < it->plant->getMaxWaterTwoWeeks())
       {
         Serial.println("WATERING " + String((it->plant->getName()).c_str()) + " PLANT!");
@@ -62,7 +60,7 @@ void WateringManager::PrintTwoWeekResults()
 {
   Serial.println("------------- 2 Week Results -------------");
   for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
-    Serial.println(String((it->plant->getName()).c_str()) + " Has been watered " + String(it->plant->getTimesWatered()) + " times.  Attempted Waters = " + String(it->plant->getTimesAttemptedWatered()));
+    Serial.println(String((it->plant->getName()).c_str()) + " Has been watered " + String(it->plant->getTimesWatered()) + " times.  MAX Water per 2 week = " + String(it->plant->getMaxWaterTwoWeeks()));
   }
   Serial.println("------------- -------------- -------------");
 }

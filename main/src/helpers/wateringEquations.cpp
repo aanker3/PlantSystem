@@ -4,7 +4,7 @@
 #define TEN_SECONDS 10000ul
 #define FIFTEEN_SECONDS 15000ul
 
-
+//Amount of time to water a plant
 unsigned long getWaterTime(PotSize potSize)
 {
   switch(potSize)
@@ -16,5 +16,4 @@ unsigned long getWaterTime(PotSize potSize)
     case PotSize::Large:
       return FIFTEEN_SECONDS;
   }
-
 }

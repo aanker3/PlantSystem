@@ -18,9 +18,6 @@ class Plant {
 
     float getMoistureWateringPoint() const; // Getter for moistureWateringPoint
 
-    uint8_t getTimesAttemptedWatered() const;
-    void attemptedWatered();
-
     uint16_t getMaxWaterTwoWeeks() const;
 
     PotSize getPotSize() const;
@@ -41,12 +38,8 @@ class Plant {
     PlantConfig cfg;
 
     float currentMoistureValue;
-    
-    uint8_t timesWatered;  // Amount of times plant has been watered
 
-    // Amount of times algorithm determined plant shouldve been watered
-    // But didnt due to Max water per week restriction
-    uint8_t timesAttemptedWatered;
+    uint8_t timesWatered;  // Amount of times plant has been watered
 
     PotSize potSize;
                                 

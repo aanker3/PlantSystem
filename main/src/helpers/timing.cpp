@@ -19,7 +19,7 @@ void getTimeAndUpdate(unsigned long &previousTime, uint16_t &days_elapsed)
 }
 
 bool twoWeeksElapsed(uint16_t &days_elapsed) {
-  if (days_elapsed >= 14) {
+  if (days_elapsed >= DAYS_IN_A_WEEK) {
     days_elapsed = 0; // Reset the days elapsed to start counting a new period
     return true; // Two weeks have elapsed
   }
