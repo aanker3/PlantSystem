@@ -1,5 +1,5 @@
-#ifndef HELPERS_H
-#define HELPERS_H
+#ifndef TIMING_H
+#define TIMING_H
 #include "Arduino.h"
 #include <cstdint>
 
