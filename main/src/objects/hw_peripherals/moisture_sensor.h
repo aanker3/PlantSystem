@@ -4,7 +4,6 @@
 #include <stdint.h>
 #include "Arduino.h"
 #include "hw_peripheral_base.h"
-#include "../../../sensor_conversions.h"
 
 class MoistureSensor : public HwPeripheralBase {       // The class
   public:             // Access specifier

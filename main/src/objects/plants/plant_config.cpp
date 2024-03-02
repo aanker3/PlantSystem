@@ -1,13 +1,13 @@
 #include "plant_config.h"
 #include "Arduino.h"
 
-#define FERN_MOISTURE_WATERING_POINT 2.0f
+#define FERN_MOISTURE_WATERING_POINT 270.0f
 #define FERN_WATER_PER_WEEK 5
 
-#define CACTUS_MOISTURE_WATERING_POINT 1.5f
+#define CACTUS_MOISTURE_WATERING_POINT 280.5f
 #define CACTUS_WATER_PER_WEEK 2
 
-#define BASIL_MOISTURE_WATERING_POINT 2.1f
+#define BASIL_MOISTURE_WATERING_POINT 266.1f
 #define BASIL_WATER_PER_WEEK 4
 
 // Save Plant Configurations in Memory

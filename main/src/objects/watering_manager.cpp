@@ -30,6 +30,9 @@ void WateringManager::gatherDataAndWater()
       if (it->plant->getMoistureWateringPoint() > it->moistureSensor.getMeasuredValue())
       {
         Serial.println("WATERING " + String((it->plant->getName()).c_str()) + " PLANT!");
+        it->plant->plantWatered();
+        Serial.println(String((it->plant->getName()).c_str()) + " Has been watered " + String(it->plant->getTimesWatered()) + " times");
+
         it->motor.motor5s();
       }
     }
