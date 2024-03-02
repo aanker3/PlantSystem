@@ -24,8 +24,9 @@ class WateringManager {
 
     void printPlantSystemsInfo() const;
   
-    void gatherDataAndWater();
+    void gatherSensorData();
 
+    void waterPlantsIfNeeded();
 
   private:
   std::vector<PlantSystem> plantSystems;

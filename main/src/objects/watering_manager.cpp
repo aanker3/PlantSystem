@@ -24,19 +24,26 @@ void WateringManager::printPlantSystemsInfo() const {
   }
 }
 
-void WateringManager::gatherDataAndWater()
+void WateringManager::gatherSensorData()
 {
-    for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
-      if (it->plant->getMoistureWateringPoint() > it->moistureSensor.getMeasuredValue())
-      {
-        Serial.println("WATERING " + String((it->plant->getName()).c_str()) + " PLANT!");
-        it->plant->plantWatered();
-        Serial.println(String((it->plant->getName()).c_str()) + " Has been watered " + String(it->plant->getTimesWatered()) + " times");
-
-        it->motor.motor5s();
-      }
-    }
+  for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
+    it->plant->setCurrentMoistureValue(it->moistureSensor.getMeasuredValue());
+  }
 }
+
+void WateringManager::waterPlantsIfNeeded()
+{
+  for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
+    if(it->plant->getMoistureWateringPoint() > it->plant->getCurrentMoistureValue())
+    {
+      Serial.println("WATERING " + String((it->plant->getName()).c_str()) + " PLANT!");
+      it->plant->plantWatered();
+      Serial.println(String((it->plant->getName()).c_str()) + " Has been watered " + String(it->plant->getTimesWatered()) + " times");
+      it->motor.motor5s();
+    }
+  }
+}
+
 
 void WateringManager::addPlantSystem(const std::string& plantName, uint8_t moistureSensorPin, uint8_t motorPin)
 {

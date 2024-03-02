@@ -38,8 +38,8 @@ void loop() {
     // }
     //Serial.println("fern plant Name = " + String(fern->getName().c_str()));
     wateringManager->printPlantSystemsInfo();
-    wateringManager->gatherDataAndWater();
-
+    wateringManager->gatherSensorData();
+    wateringManager->waterPlantsIfNeeded();
   
   //Serial.println("Cactus Moisture Value = " + String(cactus->getMoistureWateringPoint()));
   //Serial.println("Fern Moisture Value = " + String(fern->getMoistureWateringPoint()));
