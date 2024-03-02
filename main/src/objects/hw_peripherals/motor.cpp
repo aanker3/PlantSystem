@@ -15,3 +15,13 @@ void Motor::motor5s(){
   delay(5000);
   digitalWrite(hwPin, LOW);
 }
+
+void Motor::turnOn()
+{
+  digitalWrite(hwPin, HIGH);
+}
+
+void Motor::turnOff()
+{
+  digitalWrite(hwPin, LOW);
+}

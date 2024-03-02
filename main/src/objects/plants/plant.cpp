@@ -2,7 +2,7 @@
 #include "Arduino.h"
 
 // Constructor - Initialize Variables
-Plant::Plant(const std::string& plantName, PlantConfig& config) : name(plantName), cfg(config)
+Plant::Plant(const std::string& plantName, PotSize potSize, PlantConfig& config) : name(plantName), potSize(potSize), cfg(config)
 {
   reset();
 }
@@ -30,9 +30,15 @@ uint16_t Plant::getMaxWaterTwoWeeks() const {
   return cfg.maxWaterTwoWeeks;
 }
 
+PotSize Plant::getPotSize() const {
+  return potSize;
+}
+
+
 void Plant::plantWatered(){
   timesWatered++;
 }
+
 uint8_t Plant::getTimesWatered() const {
   return timesWatered;
 }

@@ -8,7 +8,7 @@
 //Plant object
 class Plant {
   public:
-    Plant(const std::string& plantName, PlantConfig& config);
+    Plant(const std::string& plantName, PotSize potSize, PlantConfig& config);
     ~Plant();
 
     std::string getName() const;
@@ -22,6 +22,9 @@ class Plant {
     void attemptedWatered();
 
     uint16_t getMaxWaterTwoWeeks() const;
+
+    PotSize getPotSize() const;
+
 
     //TODO: can simply do a getCfg()...
 
@@ -38,11 +41,14 @@ class Plant {
     PlantConfig cfg;
 
     float currentMoistureValue;
+    
     uint8_t timesWatered;  // Amount of times plant has been watered
 
     // Amount of times algorithm determined plant shouldve been watered
     // But didnt due to Max water per week restriction
     uint8_t timesAttemptedWatered;
+
+    PotSize potSize;
                                 
 
 };

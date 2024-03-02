@@ -11,6 +11,11 @@ class Motor : public HwPeripheralBase {       // The class
     ~Motor();
 
     void motor5s();
+
+    void turnOn();
+
+    void turnOff();
+
 };
 
 

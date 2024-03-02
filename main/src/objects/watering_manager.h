@@ -5,6 +5,7 @@
 #include "hw_peripherals/motor.h"
 #include "plants/plant.h"
 #include "plants/plant_factory.h"
+#include "../helpers/wateringEquations.h"
 #include <vector>
 
 // Consists of everything that makes up a single plant system
@@ -20,7 +21,7 @@ class WateringManager {
     WateringManager();
     ~WateringManager();
 
-    void addPlantSystem(const std::string& plantName, uint8_t moistureSensorPin, uint8_t motorPin);
+    void addPlantSystem(const std::string& plantName, PotSize potSize, uint8_t moistureSensorPin, uint8_t motorPin);
 
     void printPlantSystemsInfo() const;
   

@@ -18,8 +18,8 @@ void setup() {
   Serial.begin(9600);
 
   wateringManager = new WateringManager();
-  wateringManager->addPlantSystem("fern", A0, 13);
-  wateringManager->addPlantSystem("cactus", A1, 12);
+  wateringManager->addPlantSystem("fern", PotSize::Small, A0, 13);
+  wateringManager->addPlantSystem("cactus", PotSize::Large, A1, 12);
   //wateringManager->addPlantSystem("basil", A2, 11);
 
   //pinMode(motorPin, OUTPUT);
@@ -42,7 +42,7 @@ void loop() {
   }
 
   Serial.println("test");
-  wateringManager->printPlantSystemsInfo();
+  //wateringManager->printPlantSystemsInfo();
   wateringManager->gatherSensorData();
   wateringManager->waterPlantsIfNeeded();
 

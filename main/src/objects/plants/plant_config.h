@@ -8,6 +8,12 @@ struct PlantConfig {
     uint16_t maxWaterTwoWeeks;
 };
 
+enum PotSize {
+    Small,
+    Medium,
+    Large
+};
+
 // Declaration only
 extern std::map<std::string, PlantConfig> plantConfigurations;
 

@@ -8,7 +8,7 @@
 class PlantFactory {       // The class
   public:             // Access specifier
     //Static so it can be called directly, outside the class
-    static Plant* createPlant(const std::string& plantName);
+    static Plant* createPlant(const std::string& plantName, PotSize potSize);
 };
 
 

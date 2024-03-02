@@ -43,7 +43,12 @@ void WateringManager::waterPlantsIfNeeded()
         Serial.println("WATERING " + String((it->plant->getName()).c_str()) + " PLANT!");
         it->plant->plantWatered();
         Serial.println(String((it->plant->getName()).c_str()) + " Has been watered " + String(it->plant->getTimesWatered()) + " times");
-        it->motor.motor5s();
+        
+        unsigned long wateringTime = getWaterTime(it->plant->getPotSize());
+        Serial.println("Watering for " + String(wateringTime/1000) + " Seconds");
+        it->motor.turnOn();
+        delay(wateringTime);
+        it->motor.turnOff();
       }
       else
       {
@@ -71,9 +76,9 @@ void WateringManager::resetPlants()
   }
 }
 
-void WateringManager::addPlantSystem(const std::string& plantName, uint8_t moistureSensorPin, uint8_t motorPin)
+void WateringManager::addPlantSystem(const std::string& plantName, PotSize potSize, uint8_t moistureSensorPin, uint8_t motorPin)
 {
-  Plant* plant = PlantFactory::createPlant(plantName);
+  Plant* plant = PlantFactory::createPlant(plantName, potSize);
   if (plant==NULL)
   {
     Serial.println("Error Plant is NULL.  Plant name not found");
