@@ -28,6 +28,8 @@ class WateringManager {
 
     void waterPlantsIfNeeded();
 
+    void resetPlants();
+
   private:
   std::vector<PlantSystem> plantSystems;
 

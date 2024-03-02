@@ -36,4 +36,5 @@ uint8_t Plant::getTimesWatered() const {
 
 void Plant::reset(){
   timesWatered = 0;
+  timesAttemptedWatered = 0;
 }

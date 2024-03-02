@@ -10,6 +10,10 @@
 
 WateringManager* wateringManager = NULL;
 
+// Global Variables
+unsigned long previousTime = 0; // Stores the last time we updated the day count
+uint16_t days_elapsed = 0; // Stores the number of days elapsed
+
 void setup() {
   Serial.begin(9600);
 
@@ -24,25 +28,23 @@ void setup() {
 
 void loop() {
 
+  // Call GetTimeAndUpdate regularly to update time and count days
+  getTimeAndUpdate(previousTime, days_elapsed);
+
+  // Check if two weeks have elapsed
+  if (twoWeeksElapsed(days_elapsed)) {
+    Serial.println("Two weeks have elapsed!");
+    wateringManager->resetPlants();
+  }
+  else
+  {
+    Serial.println("days elapsed = " + String(days_elapsed));
+  }
+
   Serial.println("test");
-    
-
-    // for (Plant* plant : plantVector) {
-    //     if (plant != nullptr) {
-    //         Serial.println("plant Name = " + String(plant->getName().c_str()));
-    //         Serial.println("plant Moisture Value = " + String(plant->getMoistureWateringPoint()));
-
-    //         // Example function call, assuming Plant has a method named 'displayInfo'
-    //         // plant->displayInfo();
-    //     }
-    // }
-    //Serial.println("fern plant Name = " + String(fern->getName().c_str()));
-    wateringManager->printPlantSystemsInfo();
-    wateringManager->gatherSensorData();
-    wateringManager->waterPlantsIfNeeded();
-  
-  //Serial.println("Cactus Moisture Value = " + String(cactus->getMoistureWateringPoint()));
-  //Serial.println("Fern Moisture Value = " + String(fern->getMoistureWateringPoint()));
+  wateringManager->printPlantSystemsInfo();
+  wateringManager->gatherSensorData();
+  wateringManager->waterPlantsIfNeeded();
 
   delay(1000);  // Delay a bit to make it more readable
 }

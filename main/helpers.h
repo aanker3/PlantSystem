@@ -12,11 +12,13 @@
 #define MILLIS_TO_MINUTES MILLIS_TO_SECONDS / 60
 
 #define ONE_MINUTE_MS 60000
-#define ONE_DAY_MS 5000 //86400000
+#define ONE_DAY_MS 60000//86400000
 #define ONE_WEEK_MS ONE_DAY_MS * 7
 
 unsigned long GetTimeElapsedMinutes();
 
-void GetTimeAndUpdate(unsigned long &previousTime, uint16_t &days_elapsed);
+void getTimeAndUpdate(unsigned long &previousTime, uint16_t &days_elapsed);
+
+bool twoWeeksElapsed(uint16_t &days_elapsed);
 
 #endif

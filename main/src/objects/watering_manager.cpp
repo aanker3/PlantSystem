@@ -44,6 +44,13 @@ void WateringManager::waterPlantsIfNeeded()
   }
 }
 
+void WateringManager::resetPlants()
+{
+  Serial.println("RESETTING PLANTS");
+  for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
+    it->plant->reset();
+  }
+}
 
 void WateringManager::addPlantSystem(const std::string& plantName, uint8_t moistureSensorPin, uint8_t motorPin)
 {
