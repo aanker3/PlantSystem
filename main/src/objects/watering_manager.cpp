@@ -17,7 +17,7 @@ void WateringManager::printPlantSystemsInfo() const {
     Serial.println("Plant " + String(plantNum));
     Serial.println((it->plant->getName()).c_str());
     Serial.println("MoistureWateringPoint = " + String(it->plant->getMoistureWateringPoint()));
-    Serial.println("pin: " + String(it->moistureSensor.getHwPin()) + "measured_value = " + String(it->moistureSensor.getMeasuredValue()));
+    Serial.println("Moisture pin: " + String(it->moistureSensor.getHwPin()) + "measured_value = " + String(it->moistureSensor.getMeasuredValue()));
 
     Serial.println(it->motor.getHwPin());
     plantNum++;
@@ -45,6 +45,7 @@ void WateringManager::waterPlantsIfNeeded()
         unsigned long wateringTime = getWaterTime(it->plant->getPotSize());
         Serial.println("Watering for " + String(wateringTime/1000) + " Seconds");
         it->motor.turnOn();
+        //Delay = blocking function w/ weight sensor
         delay(wateringTime);
         it->motor.turnOff();
       }
@@ -58,6 +59,7 @@ void WateringManager::waterPlantsIfNeeded()
 
 void WateringManager::PrintTwoWeekResults()
 {
+  //todo Log output to sd card.
   Serial.println("------------- 2 Week Results -------------");
   for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
     Serial.println(String((it->plant->getName()).c_str()) + " Has been watered " + String(it->plant->getTimesWatered()) + " times.  MAX Water per 2 week = " + String(it->plant->getMaxWaterTwoWeeks()));
