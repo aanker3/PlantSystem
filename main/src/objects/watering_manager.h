@@ -29,7 +29,7 @@ class WateringManager {
 
     void waterPlantsIfNeeded();
 
-    void PrintTwoWeekResults();
+    void printTwoWeekResults(uint16_t weeksElapsed);
 
     void resetPlants();
 

@@ -1,0 +1,7 @@
+Todo:
+Incorporate weight
+log SD card
+Find actual measurement data for plants
+LCD output / button input system
+
+Write my own i2c (LCD output) / spi driver (SD)

@@ -13,8 +13,8 @@
 
 unsigned long GetTimeElapsedMinutes();
 
-void getTimeAndUpdate(unsigned long &previousTime, uint16_t &days_elapsed);
+void getTimeAndUpdate(unsigned long &previousTime, uint16_t &daysElapsed);
 
-bool twoWeeksElapsed(uint16_t &days_elapsed);
+bool twoWeeksElapsed(uint16_t &daysElapsed);
 
 #endif

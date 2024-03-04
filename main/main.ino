@@ -12,14 +12,15 @@ WateringManager* wateringManager = NULL;
 
 // Global Variables
 unsigned long previousTime = 0; // Stores the last time we updated the day count
-uint16_t days_elapsed = 0; // Stores the number of days elapsed
+uint16_t daysElapsed = 0; // Stores the number of days elapsed
+uint16_t weeksElapsed = 0;
 
 void setup() {
   Serial.begin(9600);
 
   wateringManager = new WateringManager();
-  wateringManager->addPlantSystem("fern", PotSize::Small, A0, 13);
-  wateringManager->addPlantSystem("cactus", PotSize::Large, A1, 12);
+  wateringManager->addPlantSystem("fern", PotSize::Medium, A0, 13);
+  wateringManager->addPlantSystem("cactus", PotSize::Medium, A1, 12);
   //wateringManager->addPlantSystem("basil", A2, 11);
 
   //pinMode(motorPin, OUTPUT);
@@ -29,16 +30,18 @@ void setup() {
 void loop() {
 
   // Call GetTimeAndUpdate regularly to update time and count days
-  getTimeAndUpdate(previousTime, days_elapsed);
+  getTimeAndUpdate(previousTime, daysElapsed);
 
   // Check if two weeks have elapsed.
-  if (twoWeeksElapsed(days_elapsed)) {
+  if (twoWeeksElapsed(daysElapsed)) {
+    weeksElapsed++;
     //Reset watering period
+    wateringManager->printTwoWeekResults(weeksElapsed);
     wateringManager->resetPlants();
   }
   else
   {
-    Serial.println("days elapsed = " + String(days_elapsed));
+    Serial.println("days elapsed = " + String(daysElapsed));
   }
 
   Serial.println("test");
@@ -58,8 +61,8 @@ void loop() {
 //   // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
 //   Serial.println("Moisture_Sensor_A0: " + String(moisture_value));
 
-//   GetTimeAndUpdate(previousTime, days_elapsed);
-//   Serial.println("days_elapsed = " + String(days_elapsed));
+//   GetTimeAndUpdate(previousTime, daysElapsed);
+//   Serial.println("daysElapsed = " + String(daysElapsed));
 
 
 
