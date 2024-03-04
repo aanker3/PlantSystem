@@ -8,6 +8,7 @@ WateringManager::WateringManager(){
 WateringManager::~WateringManager(){
   for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
     delete it->plant;
+    it->plant = NULL;
   }
 }
 
@@ -45,6 +46,7 @@ void WateringManager::waterPlantsIfNeeded()
         unsigned long wateringTime = getWaterTime(it->plant->getPotSize());
         Serial.println("Watering for " + String(wateringTime/1000) + " Seconds");
         it->motor.turnOn();
+
         //Delay = blocking function w/ weight sensor
         delay(wateringTime);
         it->motor.turnOff();
