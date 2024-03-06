@@ -5,8 +5,8 @@
 #include <string>
 #include "Arduino.h"
 
-class PlantFactory {       // The class
-  public:             // Access specifier
+class PlantFactory {
+  public:
     //Static so it can be called directly, outside the class
     static Plant* createPlant(const std::string& plantName, PotSize potSize);
 };

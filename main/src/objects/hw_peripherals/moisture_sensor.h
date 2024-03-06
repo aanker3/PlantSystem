@@ -5,8 +5,8 @@
 #include "Arduino.h"
 #include "hw_peripheral_base.h"
 
-class MoistureSensor : public HwPeripheralBase {       // The class
-  public:             // Access specifier
+class MoistureSensor : public HwPeripheralBase {
+  public:
     MoistureSensor(uint8_t pin);
     float getMeasuredValue() const;
 

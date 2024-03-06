@@ -23,8 +23,6 @@ void setup() {
   wateringManager->addPlantSystem("cactus", PotSize::Medium, A1, 12);
   //wateringManager->addPlantSystem("basil", A2, 11);
 
-  //pinMode(motorPin, OUTPUT);
-
 }
 
 void loop() {

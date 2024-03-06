@@ -3,10 +3,9 @@
 
 #include <stdint.h>
 
-//Abstract Based Peripheral Class.
-//Handles Peripheral HW Initialization
+//Abstract Based HW Peripheral Class.
 class HwPeripheralBase {       // The class
-  public:             // Access specifier
+  public:
     HwPeripheralBase(uint8_t pin);
     virtual ~HwPeripheralBase();
 
@@ -14,7 +13,7 @@ class HwPeripheralBase {       // The class
     virtual uint8_t getHwPin() const; // Getter for hwPin
 
   protected:
-    uint8_t hwPin;        // Attribute (int variable)
+    uint8_t hwPin;
 };
 
 

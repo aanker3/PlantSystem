@@ -9,8 +9,7 @@ void getTimeAndUpdate(unsigned long &previousTime, uint16_t &daysElapsed)
   unsigned long currentTime = millis();
   unsigned long elapsedTime = currentTime - previousTime;
   Serial.println("Minutes Elapsed = " + String(msToMinutes(elapsedTime)));
-  // Check if elapsedTime has exceeded or is exactly one week,
-  // if so, reset previousTime to "simulate" resetting the timer
+  // Days elapsed counter
   if (elapsedTime >= ONE_DAY_MS)
   {
     previousTime = currentTime - (elapsedTime - ONE_DAY_MS);

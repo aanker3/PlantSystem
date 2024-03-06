@@ -5,8 +5,8 @@
 #include <stdint.h>
 #include "Arduino.h"
 
-class Motor : public HwPeripheralBase {       // The class
-  public:             // Access specifier
+class Motor : public HwPeripheralBase {
+  public:
     Motor(uint8_t pin);
     ~Motor();
 

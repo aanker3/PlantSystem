@@ -23,13 +23,13 @@ class Plant {
     PotSize getPotSize() const;
 
 
-    //TODO: can simply do a getCfg()...
+    //TODO: can simply do a getCfg()? Do i want this?
 
 
     void plantWatered(); // Setter for timesWatered
     uint8_t getTimesWatered() const; // Getter for timesWatered
     
-    void reset(); //Reset Variables (usually after 50 Day Timeout)
+    void reset(); //Reset Variables (after timeout)
   private:
     // Name of plant
     std::string name;
