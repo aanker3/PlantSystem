@@ -2,7 +2,9 @@
 #include "Arduino.h"
 
 // Constructor - Initialize Variables
-WateringManager::WateringManager(){
+WateringManager::WateringManager(uint8_t weightSensorPin) : weightSensor(weightSensorPin)
+{
+
 }
 
 WateringManager::~WateringManager(){
@@ -32,6 +34,16 @@ void WateringManager::gatherSensorData()
   }
 }
 
+void WateringManager::wateringDelay(uint16_t amountToWater)
+{
+  uint16_t initialWeight = weightSensor.getMeasuredValue();
+
+  while((initialWeight - weightSensor.getMeasuredValue()) < amountToWater)
+  {
+  }
+  return;
+}
+
 void WateringManager::waterPlantsIfNeeded()
 {
   for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
@@ -46,7 +58,7 @@ void WateringManager::waterPlantsIfNeeded()
         unsigned long wateringTime = getWaterTime(it->plant->getPotSize());
         Serial.println("Watering for " + String(wateringTime/1000) + " Seconds");
         it->motor.turnOn();
-
+        
         //Delay = blocking function w/ weight sensor
         delay(wateringTime);
         it->motor.turnOff();
@@ -86,7 +98,7 @@ void WateringManager::addPlantSystem(const std::string& plantName, PotSize potSi
     Serial.println("Error Plant is NULL.  Plant name not found");
     return;
   }
-  MoistureSensor moistureSensor = MoistureSensor(moistureSensorPin);
+  Sensor moistureSensor = Sensor(moistureSensorPin);
   Motor motor = Motor(motorPin);
   PlantSystem newPlantSystem = {plant, moistureSensor, motor};
   plantSystems.push_back(newPlantSystem);

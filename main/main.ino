@@ -1,4 +1,4 @@
-#include "src/objects/hw_peripherals/moisture_sensor.h"
+#include "src/objects/hw_peripherals/sensor.h"
 #include "src/objects/plants/plant.h"
 #include "src/objects/plants/plant_factory.h"
 #include "src/objects/watering_manager.h"
@@ -18,7 +18,7 @@ uint16_t weeksElapsed = 0;
 void setup() {
   Serial.begin(9600);
 
-  wateringManager = new WateringManager();
+  wateringManager = new WateringManager(A2);
   wateringManager->addPlantSystem("fern", PotSize::Medium, A0, 13);
   wateringManager->addPlantSystem("cactus", PotSize::Medium, A1, 12);
   //wateringManager->addPlantSystem("basil", A2, 11);

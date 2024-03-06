@@ -1,7 +1,7 @@
 #ifndef WATERING_MANAGER_H
 #define WATERING_MANAGER_H
 
-#include "hw_peripherals/moisture_sensor.h"
+#include "hw_peripherals/sensor.h"
 #include "hw_peripherals/motor.h"
 #include "plants/plant.h"
 #include "plants/plant_factory.h"
@@ -11,14 +11,14 @@
 // Consists of everything that makes up a single plant system
 struct  PlantSystem {
   Plant* plant;
-  MoistureSensor moistureSensor;
+  Sensor moistureSensor;
   Motor motor;
 };
 
 class WateringManager {
   public:
 
-    WateringManager();
+    WateringManager(uint8_t weightSensorPin);
     ~WateringManager();
 
     void addPlantSystem(const std::string& plantName, PotSize potSize, uint8_t moistureSensorPin, uint8_t motorPin);
@@ -26,6 +26,8 @@ class WateringManager {
     void printPlantSystemsInfo() const;
   
     void gatherSensorData();
+
+    void wateringDelay(uint16_t amountToWater);
 
     void waterPlantsIfNeeded();
 
@@ -35,7 +37,7 @@ class WateringManager {
 
   private:
   std::vector<PlantSystem> plantSystems;
-
+  Sensor weightSensor;
 
 };
 #endif

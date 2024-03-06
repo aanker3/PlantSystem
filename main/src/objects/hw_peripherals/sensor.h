@@ -1,13 +1,13 @@
-#ifndef MOISTURE_SENSOR_H
-#define MOISTURE_SENSOR_H
+#ifndef SENSOR_H
+#define SENSOR_H
 
 #include <stdint.h>
 #include "Arduino.h"
 #include "hw_peripheral_base.h"
 
-class MoistureSensor : public HwPeripheralBase {
+class Sensor : public HwPeripheralBase {
   public:
-    MoistureSensor(uint8_t pin);
+    Sensor(uint8_t pin);
     float getMeasuredValue() const;
 
   private:
