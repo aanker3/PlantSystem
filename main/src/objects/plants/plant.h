@@ -18,7 +18,7 @@ class Plant {
 
     float getMoistureWateringPoint() const; // Getter for moistureWateringPoint
 
-    uint16_t getMaxWaterTwoWeeks() const;
+    uint16_t getmaxWaterWeekly() const;
 
     PotSize getPotSize() const;
 

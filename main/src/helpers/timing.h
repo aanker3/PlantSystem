@@ -9,12 +9,10 @@
 #define ONE_MINUTE_MS 60000
 #define ONE_DAY_MS 5000//86400000
 
-#define DAYS_IN_A_WEEK 14
-
-unsigned long GetTimeElapsedMinutes();
+#define DAYS_IN_A_WEEK 7
 
 void getTimeAndUpdate(unsigned long &previousTime, uint16_t &daysElapsed);
 
-bool twoWeeksElapsed(uint16_t &daysElapsed);
+bool weekElapsed(uint16_t &daysElapsed);
 
 #endif

@@ -5,7 +5,7 @@
 
 struct PlantConfig {
     float moistureWateringPoint;
-    uint16_t maxWaterTwoWeeks;
+    uint16_t maxWaterWeekly;
 };
 
 enum PotSize {

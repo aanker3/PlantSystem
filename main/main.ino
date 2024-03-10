@@ -28,11 +28,11 @@ void loop() {
   // Call GetTimeAndUpdate to update time and count days
   getTimeAndUpdate(previousTime, daysElapsed);
 
-  // Check if two weeks have elapsed.
-  if (twoWeeksElapsed(daysElapsed)) {
-    weeksElapsed = weeksElapsed + 2;
+  // Check if a week has elapsed.
+  if (weekElapsed(daysElapsed)) {
+    weeksElapsed++;
     //Reset watering period
-    wateringManager->printTwoWeekResults(weeksElapsed);
+    wateringManager->printWeeklyResults(weeksElapsed);
     wateringManager->resetPlants();
   }
   else

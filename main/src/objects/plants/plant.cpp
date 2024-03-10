@@ -26,8 +26,8 @@ float Plant::getMoistureWateringPoint() const {
   return cfg.moistureWateringPoint;
 }
 
-uint16_t Plant::getMaxWaterTwoWeeks() const {
-  return cfg.maxWaterTwoWeeks;
+uint16_t Plant::getmaxWaterWeekly() const {
+  return cfg.maxWaterWeekly;
 }
 
 PotSize Plant::getPotSize() const {
