@@ -37,7 +37,7 @@ void WateringManager::waterPlantsIfNeeded()
   for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
     if(it->plant->getMoistureWateringPoint() > it->plant->getCurrentMoistureValue())
     {
-      if (it->plant->getTimesWatered() < it->plant->getmaxWaterWeekly())
+      if (it->plant->getTimesWatered() < it->plant->getMaxWaterWeekly())
       {
         Serial.println("WATERING " + String((it->plant->getName()).c_str()) + " PLANT!");
         it->plant->plantWatered();
@@ -62,10 +62,9 @@ void WateringManager::waterPlantsIfNeeded()
 void WateringManager::printWeeklyResults(uint16_t weeksElapsed)
 {
   //todo Log output to sd card.
-  Serial.println("------------- 2 Week Results -------------");
+  Serial.println("------------- Week" + String(weeksElapsed+1)+ " Results -------------");
   for(auto it = plantSystems.begin(); it != plantSystems.end(); ++it) {
-    Serial.println("Weeks Elapsed = " + String(weeksElapsed));
-    Serial.println(String((it->plant->getName()).c_str()) + " Has been watered " + String(it->plant->getTimesWatered()) + " times.  MAX Water per 2 week = " + String(it->plant->getmaxWaterWeekly()));
+    Serial.println(String((it->plant->getName()).c_str()) + " Has been watered " + String(it->plant->getTimesWatered()) + " times.  MAX Water per week = " + String(it->plant->getMaxWaterWeekly()));
   }
   Serial.println("------------- -------------- -------------");
 }

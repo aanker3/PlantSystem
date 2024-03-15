@@ -9,7 +9,7 @@
 WateringManager* wateringManager = NULL;
 
 // Global Variables
-unsigned long previousTime = 0; // Stores the last time we updated the day count
+unsigned long previousTime = 0; // Stores the last time we updated
 uint16_t daysElapsed = 0; // Stores the number of days elapsed
 uint16_t weeksElapsed = 0;
 
@@ -17,6 +17,7 @@ void setup() {
   Serial.begin(9600);
 
   wateringManager = new WateringManager();
+  //Plant Name, PotSize, MoistureSensorPin, MotorPin
   wateringManager->addPlantSystem("fern", PotSize::Medium, A0, 13);
   wateringManager->addPlantSystem("cactus", PotSize::Medium, A1, 12);
   //wateringManager->addPlantSystem("basil", A2, 11);
@@ -25,8 +26,8 @@ void setup() {
 
 void loop() {
 
-  // Call GetTimeAndUpdate to update time and count days
-  getTimeAndUpdate(previousTime, daysElapsed);
+  // Call getTimeAndUpdateDaysElapsed to update time and count days
+  getTimeAndUpdateDaysElapsed(previousTime, daysElapsed);
 
   // Check if a week has elapsed.
   if (weekElapsed(daysElapsed)) {

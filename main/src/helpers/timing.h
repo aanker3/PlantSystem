@@ -11,7 +11,7 @@
 
 #define DAYS_IN_A_WEEK 7
 
-void getTimeAndUpdate(unsigned long &previousTime, uint16_t &daysElapsed);
+void getTimeAndUpdateDaysElapsed(unsigned long &previousTime, uint16_t &daysElapsed);
 
 bool weekElapsed(uint16_t &daysElapsed);
 
