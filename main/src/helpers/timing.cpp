@@ -1,9 +1,5 @@
 #include "timing.h"
 
-unsigned long msToMinutes(unsigned long ms){
-  return millis() / MILLIS_TO_MINUTES;
-}
-
 void getTimeAndUpdateDaysElapsed(unsigned long &previousTime, uint16_t &daysElapsed)
 {
   unsigned long currentTime = millis();
