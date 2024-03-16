@@ -4,9 +4,11 @@
 #include "src/objects/watering_manager.h"
 #include "src/helpers/timing.h"
 #include "src/objects/hw_peripherals/motor.h"
+#include "src/objects/hw_peripherals/ultrasonic_sensor.h"
 #include <vector>
 
 WateringManager* wateringManager = NULL;
+UltrasonicSensor* ultrasonicSensor = NULL;
 
 // Global Variables
 unsigned long previousTime = 0; // Stores the last time we updated
@@ -16,6 +18,7 @@ uint16_t weeksElapsed = 0;
 void setup() {
   Serial.begin(9600);
 
+  ultrasonicSensor = new UltrasonicSensor(3,4);
   wateringManager = new WateringManager();
   //Plant Name, PotSize, MoistureSensorPin, MotorPin
   wateringManager->addPlantSystem("fern", PotSize::Medium, A0, 13);
@@ -44,6 +47,8 @@ void loop() {
   //wateringManager->printPlantSystemsInfo();
   wateringManager->gatherSensorData();
   wateringManager->waterPlantsIfNeeded();
+
+  Serial.println("ultrasonic reading = " + String(ultrasonicSensor->getMeasuredValue()));
 
   delay(1000);
 }

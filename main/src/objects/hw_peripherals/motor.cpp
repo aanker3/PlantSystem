@@ -1,6 +1,6 @@
 #include "motor.h"
 
-Motor::Motor(uint8_t pin) : HwPeripheralBase(pin){
+Motor::Motor(uint8_t pin) : hwPin(pin){
   pinMode(hwPin, OUTPUT);
 }
 
@@ -24,4 +24,8 @@ void Motor::turnOn()
 void Motor::turnOff()
 {
   digitalWrite(hwPin, LOW);
+}
+
+uint8_t Motor::getHwPin() const {
+  return hwPin;
 }

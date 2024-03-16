@@ -3,14 +3,17 @@
 
 #include <stdint.h>
 #include "Arduino.h"
-#include "hw_peripheral_base.h"
 
-class MoistureSensor : public HwPeripheralBase {
+class MoistureSensor {
   public:
     MoistureSensor(uint8_t pin);
+    
     float getMeasuredValue() const;
 
+    uint8_t getHwPin() const; // Getter for hwPin
+
   private:
+    uint8_t hwPin;
     float measuredValue;
 };
 
