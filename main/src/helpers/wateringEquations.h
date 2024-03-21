@@ -3,6 +3,6 @@
 
 #include "../objects/plants/plant_config.h"
 
-unsigned long getWaterTime(PotSize potSize);
+unsigned long getWateringAmount(PotSize potSize);
 
 #endif

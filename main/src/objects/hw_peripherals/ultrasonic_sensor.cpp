@@ -7,6 +7,30 @@ UltrasonicSensor::UltrasonicSensor(uint8_t rxPin, uint8_t txPin) : rxHwPin(rxPin
   pinMode(txHwPin, INPUT);
 }
 
+unsigned long UltrasonicSensor::getAccurateMeasuredValue() const{
+  // Use median of 5 readings
+  unsigned long readings[READINGS_TO_COLLECT_PER_MEASUREMENT];
+
+  //Get Readings Values
+  for (int i = 0; i<READINGS_TO_COLLECT_PER_MEASUREMENT; i++)
+  {
+    readings[i]=getMeasuredValue();
+    delay(100);
+
+  }
+
+  
+  Serial.println("individual readings = ");
+  for(int i = 0; i < READINGS_TO_COLLECT_PER_MEASUREMENT; i++) {
+      Serial.println("reading[" + String(i) + "] = " + String(readings[i]));
+  }
+
+  insertionSort(readings, READINGS_TO_COLLECT_PER_MEASUREMENT);
+
+  return readings[MEDIAN_READING];
+}
+
+
 unsigned long UltrasonicSensor::getMeasuredValue() const{
   // Clear the Trig pin
   digitalWrite(rxHwPin, LOW);
@@ -21,7 +45,7 @@ unsigned long UltrasonicSensor::getMeasuredValue() const{
   unsigned long duration = pulseIn(txHwPin, HIGH);
   
   // Calculate the distance
-  unsigned long distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and return)
+  unsigned long distance = duration * SPEED_OF_LIGHT_MM_PER_USEC / 2; // Speed of sound wave divided by 2 (tx and rx)
 
   return distance;
 }

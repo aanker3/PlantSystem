@@ -1,19 +1,16 @@
 #include "wateringEquations.h"
 
-#define FIVE_SECONDS 5000ul
-#define TEN_SECONDS 10000ul
-#define FIFTEEN_SECONDS 15000ul
 
 //Amount of time to water a plant
-unsigned long getWaterTime(PotSize potSize)
+unsigned long getWateringAmount(PotSize potSize)
 {
   switch(potSize)
   {
     case PotSize::Small:
-      return FIVE_SECONDS;
+      return 3;
     case PotSize::Medium:
-      return TEN_SECONDS;
+      return 5;
     case PotSize::Large:
-      return FIFTEEN_SECONDS;
+      return 7;
   }
 }

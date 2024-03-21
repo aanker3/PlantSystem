@@ -19,7 +19,7 @@ void setup() {
   Serial.begin(9600);
 
   ultrasonicSensor = new UltrasonicSensor(3,4);
-  wateringManager = new WateringManager();
+  wateringManager = new WateringManager(*ultrasonicSensor);
   //Plant Name, PotSize, MoistureSensorPin, MotorPin
   wateringManager->addPlantSystem("fern", PotSize::Medium, A0, 13);
   wateringManager->addPlantSystem("cactus", PotSize::Medium, A1, 12);
@@ -28,7 +28,6 @@ void setup() {
 }
 
 void loop() {
-
   // Call getTimeAndUpdateDaysElapsed to update time and count days
   getTimeAndUpdateDaysElapsed(previousTime, daysElapsed);
 
@@ -48,7 +47,7 @@ void loop() {
   wateringManager->gatherSensorData();
   wateringManager->waterPlantsIfNeeded();
 
-  Serial.println("ultrasonic reading = " + String(ultrasonicSensor->getMeasuredValue()));
-
+  Serial.println("ultrasonic reading = " + String(ultrasonicSensor->getAccurateMeasuredValue()));
   delay(1000);
+
 }

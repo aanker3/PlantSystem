@@ -2,7 +2,7 @@
 #include "Arduino.h"
 
 // Constructor - Initialize Variables
-WateringManager::WateringManager(){
+WateringManager::WateringManager(UltrasonicSensor& ultrasonicSensor_instance): ultrasonicSensor(ultrasonicSensor_instance){
 }
 
 WateringManager::~WateringManager(){
@@ -43,12 +43,27 @@ void WateringManager::waterPlantsIfNeeded()
         it->plant->plantWatered();
         Serial.println(String((it->plant->getName()).c_str()) + " Has been watered " + String(it->plant->getTimesWatered()) + " times");
         
-        unsigned long wateringTime = getWaterTime(it->plant->getPotSize());
-        Serial.println("Watering for " + String(wateringTime/1000) + " Seconds");
+        unsigned long wateringAmount = getWateringAmount(it->plant->getPotSize());
+        Serial.println("Watering" + String(wateringAmount) + " Milliliters");
+        unsigned long initialWaterLevel = ultrasonicSensor.getAccurateMeasuredValue();
         it->motor.turnOn();
+        unsigned long currentWaterLevel = initialWaterLevel;
+        while(currentWaterLevel < initialWaterLevel + wateringAmount)
+        {
+          currentWaterLevel = ultrasonicSensor.getAccurateMeasuredValue();
+          Serial.println("CURRENT WATERING LEVEL = " + String(currentWaterLevel) + " Milliliters");
 
+        }
+
+        Serial.println("BEFORE Watering LEVEL" + String(initialWaterLevel) + " Milliliters");
+        Serial.println("Ideal Watering Difference = " + String(wateringAmount) + "Milliliters.  Actual watering Difference = " + String(currentWaterLevel - initialWaterLevel));
+
+        Serial.println("AFTER Watering LEVEL" + String(currentWaterLevel) + " Milliliters");
+
+
+        
         //Delay = blocking function w/ weight sensor
-        delay(wateringTime);
+        //delay(wateringTime);
         it->motor.turnOff();
       }
       else

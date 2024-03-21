@@ -3,6 +3,7 @@
 
 #include "hw_peripherals/moisture_sensor.h"
 #include "hw_peripherals/motor.h"
+#include "hw_peripherals/ultrasonic_sensor.h"
 #include "plants/plant.h"
 #include "plants/plant_factory.h"
 #include "../helpers/wateringEquations.h"
@@ -18,7 +19,7 @@ struct  PlantSystem {
 class WateringManager {
   public:
 
-    WateringManager();
+    WateringManager(UltrasonicSensor& ultrasonicSensor_instance);
     ~WateringManager();
 
     void addPlantSystem(const std::string& plantName, PotSize potSize, uint8_t moistureSensorPin, uint8_t motorPin);
@@ -35,6 +36,7 @@ class WateringManager {
 
   private:
   std::vector<PlantSystem> plantSystems;
+  UltrasonicSensor& ultrasonicSensor;
 
 
 };
